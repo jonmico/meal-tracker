@@ -13,7 +13,7 @@ const Header = styled.h1`
   font-size: 2.5rem;
   letter-spacing: 1.5px;
   margin: 0;
-  padding: 1rem 0;
+  padding: 2rem 0 0 1rem;
 `;
 
 function App() {

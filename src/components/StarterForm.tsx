@@ -91,6 +91,13 @@ export default function StarterForm({ onCancel }: StarterFormProps) {
     console.log(newUser);
   }
 
+  function handleClearClick() {
+    setUserName('');
+    setFat(0);
+    setCarbs(0);
+    setProtein(0);
+  }
+
   return (
     <Form onSubmit={handleSubmit}>
       <StarterHeader>Let's get some basic information</StarterHeader>
@@ -151,7 +158,7 @@ export default function StarterForm({ onCancel }: StarterFormProps) {
 
       <FormInputWrapper>
         <Button>Start!</Button>
-        <Button>Clear</Button>
+        <Button onClick={handleClearClick}>Clear</Button>
         <Button onClick={onCancel}>Cancel</Button>
       </FormInputWrapper>
     </Form>

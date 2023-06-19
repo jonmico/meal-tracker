@@ -29,6 +29,15 @@ const StartButton = styled(Button)`
   display: block;
 `;
 
+type User = {
+  id: string;
+  userName: string;
+  fat: number;
+  carbs: number;
+  protein: number;
+  calories: number;
+};
+
 function App() {
   const [isStarterOpen, setIsStarterOpen] = useState(false);
 

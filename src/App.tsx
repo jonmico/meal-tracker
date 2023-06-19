@@ -1,5 +1,8 @@
 import './App.css';
 import { styled } from 'styled-components';
+import { useState } from 'react';
+
+import { Button } from './components/StarterForm';
 
 import StarterForm from './components/StarterForm';
 
@@ -18,11 +21,32 @@ const Header = styled.h1`
   padding: 2rem 0 0 1rem;
 `;
 
+const StartButton = styled(Button)`
+  width: 200px;
+  border-radius: 7.5px;
+  padding: 20px 30px;
+  margin: 2rem auto 1rem auto;
+  display: block;
+`;
+
 function App() {
+  const [isStarterOpen, setIsStarterOpen] = useState(false);
+
+  function handleCancelClick() {
+    setIsStarterOpen(false);
+  }
+
   return (
     <MainWrapper>
       <Header>Meal Tracker</Header>
-      <StarterForm />
+
+      {isStarterOpen ? (
+        <StarterForm onCancel={handleCancelClick} />
+      ) : (
+        <StartButton onClick={() => setIsStarterOpen(true)}>
+          Click me to get started!
+        </StartButton>
+      )}
     </MainWrapper>
   );
 }

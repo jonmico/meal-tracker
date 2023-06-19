@@ -4,7 +4,7 @@ import { styled } from 'styled-components';
 const Form = styled.form`
   padding: 2.5rem;
   width: 30%;
-  min-width: 300px;
+  min-width: 350px;
   margin: 1rem auto;
   border: 2px solid white;
   border-radius: 7.5px;
@@ -35,7 +35,7 @@ const FormInputWrapper = styled.div`
   margin-bottom: 0.5rem;
 `;
 
-const Button = styled.button`
+export const Button = styled.button`
   padding: 5px 30px;
   color: white;
   background-color: #18122b;
@@ -65,7 +65,11 @@ const StarterHeader = styled.h2`
   text-align: center;
 `;
 
-export default function StarterForm() {
+interface StarterFormProps {
+  onCancel: () => void;
+}
+
+export default function StarterForm({ onCancel }: StarterFormProps) {
   const [userName, setUserName] = useState('');
   const [fat, setFat] = useState(0);
   const [carbs, setCarbs] = useState(0);
@@ -83,6 +87,8 @@ export default function StarterForm() {
       protein,
       calories,
     };
+
+    console.log(newUser);
   }
 
   return (
@@ -146,6 +152,7 @@ export default function StarterForm() {
       <FormInputWrapper>
         <Button>Start!</Button>
         <Button>Clear</Button>
+        <Button onClick={onCancel}>Cancel</Button>
       </FormInputWrapper>
     </Form>
   );

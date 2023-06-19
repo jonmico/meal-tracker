@@ -1,5 +1,6 @@
 import { useState, FormEvent } from 'react';
 import { styled } from 'styled-components';
+import { User } from '../types';
 
 const Form = styled.form`
   padding: 2.5rem;
@@ -66,10 +67,14 @@ const StarterHeader = styled.h2`
 `;
 
 interface StarterFormProps {
-  onCancel: () => void;
+  setIsStarterOpen: (value: boolean) => void;
+  setUser: (user: User) => void;
 }
 
-export default function StarterForm({ onCancel }: StarterFormProps) {
+export default function StarterForm({
+  setIsStarterOpen,
+  setUser,
+}: StarterFormProps) {
   const [userName, setUserName] = useState('');
   const [fat, setFat] = useState(0);
   const [carbs, setCarbs] = useState(0);
@@ -88,7 +93,8 @@ export default function StarterForm({ onCancel }: StarterFormProps) {
       calories,
     };
 
-    console.log(newUser);
+    setUser(newUser);
+    setIsStarterOpen(false);
   }
 
   function handleClearClick() {
@@ -159,7 +165,7 @@ export default function StarterForm({ onCancel }: StarterFormProps) {
       <FormInputWrapper>
         <Button>Start!</Button>
         <Button onClick={handleClearClick}>Clear</Button>
-        <Button onClick={onCancel}>Cancel</Button>
+        <Button onClick={() => setIsStarterOpen(false)}>Cancel</Button>
       </FormInputWrapper>
     </Form>
   );

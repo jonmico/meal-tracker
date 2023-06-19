@@ -1,6 +1,7 @@
 import './App.css';
 import { styled } from 'styled-components';
 import { useState } from 'react';
+import { User } from './types';
 
 import { Button } from './components/StarterForm';
 
@@ -29,28 +30,16 @@ const StartButton = styled(Button)`
   display: block;
 `;
 
-type User = {
-  id: string;
-  userName: string;
-  fat: number;
-  carbs: number;
-  protein: number;
-  calories: number;
-};
-
 function App() {
   const [isStarterOpen, setIsStarterOpen] = useState(false);
-
-  function handleCancelClick() {
-    setIsStarterOpen(false);
-  }
+  const [user, setUser] = useState({} as User);
 
   return (
     <MainWrapper>
       <Header>Meal Tracker</Header>
 
       {isStarterOpen ? (
-        <StarterForm onCancel={handleCancelClick} />
+        <StarterForm setUser={setUser} setIsStarterOpen={setIsStarterOpen} />
       ) : (
         <StartButton onClick={() => setIsStarterOpen(true)}>
           Click me to get started!

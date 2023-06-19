@@ -1,9 +1,5 @@
-import { styled } from 'styled-components';
 import { Macros } from '../types';
-
-const MacroNumber = styled.p`
-  font-size: 1rem;
-`;
+import MacroNumber from './styled-components/MacroNumber';
 
 interface MacroConsumedProps {
   macros: Macros;

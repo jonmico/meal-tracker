@@ -1,9 +1,5 @@
 import { User } from '../types';
-import { styled } from 'styled-components';
-
-const MacroNumber = styled.p`
-  font-size: 1rem;
-`;
+import MacroNumber from './styled-components/MacroNumber';
 
 interface MacroTotalsProps {
   user: User;

@@ -163,9 +163,13 @@ export default function StarterForm({
       </FormInputWrapper>
 
       <FormInputWrapper>
-        <Button>Start!</Button>
-        <Button onClick={handleClearClick}>Clear</Button>
-        <Button onClick={() => setIsStarterOpen(false)}>Cancel</Button>
+        <Button type='submit'>Start!</Button>
+        <Button type='button' onClick={handleClearClick}>
+          Clear
+        </Button>
+        <Button type='button' onClick={() => setIsStarterOpen(false)}>
+          Cancel
+        </Button>
       </FormInputWrapper>
     </Form>
   );

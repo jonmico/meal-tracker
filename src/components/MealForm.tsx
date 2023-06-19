@@ -18,6 +18,7 @@ export default function MealForm({
   setIsAddingMeal,
   onAddMeal,
 }: MealFormProps) {
+  const [mealName, setMealName] = useState('');
   const [fat, setFat] = useState(0);
   const [carbs, setCarbs] = useState(0);
   const [protein, setProtein] = useState(0);
@@ -33,6 +34,8 @@ export default function MealForm({
     evt.preventDefault();
 
     const newFood = {
+      id: crypto.randomUUID(),
+      mealName,
       fat,
       carbs,
       protein,
@@ -46,6 +49,17 @@ export default function MealForm({
   return (
     <Form onSubmit={handleSubmit}>
       <StarterHeader>Enter the details of your meal</StarterHeader>
+
+      <FormInputWrapper>
+        <Label htmlFor='mealName'>Name: </Label>
+        <Input
+          type='text'
+          name='mealName'
+          id='mealName'
+          onChange={(evt) => setMealName(evt.target.value)}
+          value={mealName}
+        />
+      </FormInputWrapper>
 
       <FormInputWrapper>
         <Label htmlFor='fat'>Fat: </Label>

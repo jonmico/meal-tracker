@@ -35,7 +35,7 @@ export default function UserScreen({ user }: UserScreenProps) {
   return (
     <MainScreenWrapper>
       <h2>Helllooooo, {userName}!</h2>
-      <MacroDisplay user={user} />
+      <MacroDisplay user={user} meals={meals} />
       {meals.length === 0 && !isAddingMeal && (
         <NoMealsMessage>
           <p>

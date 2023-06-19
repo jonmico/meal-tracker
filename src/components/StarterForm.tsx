@@ -1,8 +1,9 @@
 import { useState, FormEvent } from 'react';
 import { styled } from 'styled-components';
 import { User } from '../types';
+import Button from './buttons/Button';
 
-const Form = styled.form`
+export const Form = styled.form`
   padding: 2.5rem;
   width: 30%;
   min-width: 350px;
@@ -11,12 +12,12 @@ const Form = styled.form`
   border-radius: 7.5px;
 `;
 
-const Label = styled.label`
+export const Label = styled.label`
   font-size: 1.5rem;
   width: 7.5rem;
 `;
 
-const Input = styled.input`
+export const Input = styled.input`
   text-align: center;
   padding: 0;
   height: 1.5rem;
@@ -29,36 +30,14 @@ const Input = styled.input`
   }
 `;
 
-const FormInputWrapper = styled.div`
+export const FormInputWrapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
   margin-bottom: 0.5rem;
 `;
 
-export const Button = styled.button`
-  padding: 5px 30px;
-  color: white;
-  background-color: #18122b;
-  border: 1px solid white;
-  border-radius: 7.5px;
-  margin: 1rem 1rem 0 1rem;
-  font-family: Roboto;
-  font-size: 1rem;
-
-  &:hover {
-    background-color: #ff78c4;
-    cursor: pointer;
-    font-weight: 700;
-    outline: none;
-
-    &:active {
-      opacity: 0.6;
-    }
-  }
-`;
-
-const StarterHeader = styled.h2`
+export const StarterHeader = styled.h2`
   margin: 0 auto 1rem auto;
   padding: 0;
   font-weight: 500;

@@ -1,8 +1,9 @@
 import { User, Meal } from '../types';
 import { styled } from 'styled-components';
-import { StartButton } from '../App';
+import AddMealButton from './buttons/AddMealButton';
 
 import MacroDisplay from './MacroDisplay';
+import MealForm from './MealForm';
 import { useState } from 'react';
 
 const MainScreenWrapper = styled.div`
@@ -16,10 +17,6 @@ const NoMealsMessage = styled.div`
   p {
     text-align: center;
   }
-`;
-
-const Button = styled(StartButton)`
-  margin: 0 auto;
 `;
 
 interface UserScreenProps {
@@ -40,9 +37,10 @@ export default function UserScreen({ user }: UserScreenProps) {
             Looks like you haven't added a meal today, click the button below to
             get started!
           </p>
-          <Button>Add Meal</Button>
+          <AddMealButton>Add Meal</AddMealButton>
         </NoMealsMessage>
       )}
+      <MealForm />
     </MainScreenWrapper>
   );
 }

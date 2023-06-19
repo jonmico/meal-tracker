@@ -3,7 +3,7 @@ import { styled } from 'styled-components';
 import { useState } from 'react';
 import { User } from './types';
 
-import { Button } from './components/StarterForm';
+import StartButton from './components//buttons/StartButton';
 
 import StarterForm from './components/StarterForm';
 import UserScreen from './components/UserScreen';
@@ -21,14 +21,6 @@ const Header = styled.h1`
   letter-spacing: 1.5px;
   margin: 0;
   padding: 2rem 0 0 1rem;
-`;
-
-export const StartButton = styled(Button)`
-  width: 200px;
-  border-radius: 7.5px;
-  padding: 20px 30px;
-  margin: 2rem auto 1rem auto;
-  display: block;
 `;
 
 function App() {

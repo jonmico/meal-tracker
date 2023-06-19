@@ -18,7 +18,7 @@ const MainWrapper = styled.div`
 `;
 const Header = styled.h1`
   text-align: center;
-  font-size: 2.5rem;
+  font-size: 2.75rem;
   letter-spacing: 1.5px;
   margin: 0;
   padding: 2rem 0 0 1rem;

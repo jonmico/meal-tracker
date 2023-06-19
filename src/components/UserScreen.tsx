@@ -1,9 +1,11 @@
 import { User, Meal } from '../types';
 import { styled } from 'styled-components';
 import AddMealButton from './buttons/AddMealButton';
+import H2Style from './styled-components/H2Style';
 
 import MacroDisplay from './MacroDisplay';
 import MealForm from './MealForm';
+import MealLog from './MealLog';
 import { useState } from 'react';
 
 const MainScreenWrapper = styled.div`
@@ -24,7 +26,7 @@ interface UserScreenProps {
 }
 
 export default function UserScreen({ user }: UserScreenProps) {
-  const { userName, fat, carbs, protein, calories } = user;
+  const { userName } = user;
   const [meals, setMeals] = useState<Meal[]>([]);
   const [isAddingMeal, setIsAddingMeal] = useState(false);
 
@@ -32,9 +34,13 @@ export default function UserScreen({ user }: UserScreenProps) {
     setMeals((m) => [...m, meal]);
   }
 
+  function handleDeleteMeal(id: string) {
+    setMeals((m) => m.filter((meal) => meal.id !== id));
+  }
+
   return (
     <MainScreenWrapper>
-      <h2>Helllooooo, {userName}!</h2>
+      <H2Style>Hellooooo, {userName}!</H2Style>
       <MacroDisplay user={user} meals={meals} />
       {meals.length === 0 && !isAddingMeal && (
         <NoMealsMessage>
@@ -50,6 +56,10 @@ export default function UserScreen({ user }: UserScreenProps) {
         </AddMealButton>
       ) : (
         <MealForm onAddMeal={handleAddMeal} setIsAddingMeal={setIsAddingMeal} />
+      )}
+
+      {meals.length > 0 && (
+        <MealLog meals={meals} onDelete={handleDeleteMeal} />
       )}
     </MainScreenWrapper>
   );

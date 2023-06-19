@@ -26,21 +26,31 @@ interface UserScreenProps {
 export default function UserScreen({ user }: UserScreenProps) {
   const { userName, fat, carbs, protein, calories } = user;
   const [meals, setMeals] = useState<Meal[]>([]);
+  const [isAddingMeal, setIsAddingMeal] = useState(false);
+
+  function handleAddMeal(meal: Meal) {
+    setMeals((m) => [...m, meal]);
+  }
 
   return (
     <MainScreenWrapper>
       <h2>Helllooooo, {userName}!</h2>
       <MacroDisplay user={user} />
-      {meals.length === 0 && (
+      {meals.length === 0 && !isAddingMeal && (
         <NoMealsMessage>
           <p>
             Looks like you haven't added a meal today, click the button below to
             get started!
           </p>
-          <AddMealButton>Add Meal</AddMealButton>
         </NoMealsMessage>
       )}
-      <MealForm />
+      {!isAddingMeal ? (
+        <AddMealButton onClick={() => setIsAddingMeal(true)}>
+          Add Meal
+        </AddMealButton>
+      ) : (
+        <MealForm onAddMeal={handleAddMeal} setIsAddingMeal={setIsAddingMeal} />
+      )}
     </MainScreenWrapper>
   );
 }

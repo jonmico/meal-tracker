@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { FormEvent, useState } from 'react';
 import {
   Form,
   StarterHeader,
@@ -7,15 +7,44 @@ import {
   Input,
 } from './StarterForm';
 import Button from './buttons/Button';
+import { Meal } from '../types';
 
-export default function MealForm() {
+interface MealFormProps {
+  setIsAddingMeal: (value: boolean) => void;
+  onAddMeal: (meal: Meal) => void;
+}
+
+export default function MealForm({
+  setIsAddingMeal,
+  onAddMeal,
+}: MealFormProps) {
   const [fat, setFat] = useState(0);
   const [carbs, setCarbs] = useState(0);
   const [protein, setProtein] = useState(0);
   const calories = fat * 9 + carbs * 4 + protein * 4;
 
+  function handleClearClick() {
+    setFat(0);
+    setCarbs(0);
+    setProtein(0);
+  }
+
+  function handleSubmit(evt: FormEvent<HTMLFormElement>) {
+    evt.preventDefault();
+
+    const newFood = {
+      fat,
+      carbs,
+      protein,
+      calories,
+    };
+
+    onAddMeal(newFood);
+    setIsAddingMeal(false);
+  }
+
   return (
-    <Form>
+    <Form onSubmit={handleSubmit}>
       <StarterHeader>Enter the details of your meal</StarterHeader>
 
       <FormInputWrapper>
@@ -66,8 +95,12 @@ export default function MealForm() {
         <Button type='submit'>Add meal</Button>
       </FormInputWrapper>
       <FormInputWrapper>
-        <Button type='button'>Clear</Button>
-        <Button type='button'>Cancel</Button>
+        <Button type='button' onClick={handleClearClick}>
+          Clear
+        </Button>
+        <Button type='button' onClick={() => setIsAddingMeal(false)}>
+          Cancel
+        </Button>
       </FormInputWrapper>
     </Form>
   );

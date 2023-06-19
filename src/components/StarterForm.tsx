@@ -1,3 +1,4 @@
+import { useState, FormEvent } from 'react';
 import { styled } from 'styled-components';
 
 const Form = styled.form`
@@ -23,7 +24,7 @@ const Input = styled.input`
 
   &:focus {
     outline: none;
-    background-color: #ff78c4;
+    background-color: #e1aeff;
   }
 `;
 
@@ -44,42 +45,104 @@ const Button = styled.button`
   font-family: Roboto;
   font-size: 1rem;
 
-  &:hover,
-  &:focus {
+  &:hover {
     background-color: #ff78c4;
     cursor: pointer;
     font-weight: 700;
     outline: none;
+
+    &:active {
+      opacity: 0.6;
+    }
   }
 `;
 
+const StarterHeader = styled.h2`
+  margin: 0 auto 1rem auto;
+  padding: 0;
+  font-weight: 500;
+  font-size: 1.25rem;
+  text-align: center;
+`;
+
 export default function StarterForm() {
+  const [userName, setUserName] = useState('');
+  const [fat, setFat] = useState(0);
+  const [carbs, setCarbs] = useState(0);
+  const [protein, setProtein] = useState(0);
+  const calories = fat * 9 + carbs * 4 + protein * 4;
+
+  function handleSubmit(evt: FormEvent<HTMLFormElement>) {
+    evt.preventDefault();
+
+    const newUser = {
+      id: crypto.randomUUID(),
+      userName,
+      fat,
+      carbs,
+      protein,
+      calories,
+    };
+  }
+
   return (
-    <Form>
+    <Form onSubmit={handleSubmit}>
+      <StarterHeader>Let's get some basic information</StarterHeader>
       <FormInputWrapper>
         <Label htmlFor='name'>Name: </Label>
-        <Input type='text' />
+        <Input
+          type='text'
+          id='name'
+          name='name'
+          onChange={(evt) => setUserName(evt.target.value)}
+          value={userName}
+        />
       </FormInputWrapper>
 
       <FormInputWrapper>
-        <Label htmlFor=''>Fat: </Label>
-        <Input type='text' name='' id='' />
+        <Label htmlFor='fat'>Fat: </Label>
+        <Input
+          type='text'
+          name='fat'
+          id='fat'
+          onChange={(evt) => setFat(Number(evt.target.value))}
+          value={fat}
+        />
       </FormInputWrapper>
 
       <FormInputWrapper>
-        <Label htmlFor=''>Carbs: </Label>
-        <Input type='text' name='' id='' />
+        <Label htmlFor='carbs'>Carbs: </Label>
+        <Input
+          type='text'
+          name='carbs'
+          id='carbs'
+          onChange={(evt) => setCarbs(Number(evt.target.value))}
+          value={carbs}
+        />
       </FormInputWrapper>
 
       <FormInputWrapper>
-        <Label htmlFor=''>Protein: </Label>
-        <Input type='text' name='' id='' />
+        <Label htmlFor='protein'>Protein: </Label>
+        <Input
+          type='text'
+          name='protein'
+          id='protein'
+          onChange={(evt) => setProtein(Number(evt.target.value))}
+          value={protein}
+        />
       </FormInputWrapper>
 
       <FormInputWrapper>
-        <Label htmlFor=''>Calories: </Label>
-        <Input type='text' name='' id='' disabled />
+        <Label htmlFor='calories'>Calories: </Label>
+        <Input
+          type='text'
+          name='calories'
+          id='calories'
+          value={calories}
+          disabled
+        />
       </FormInputWrapper>
+
       <FormInputWrapper>
         <Button>Start!</Button>
         <Button>Clear</Button>

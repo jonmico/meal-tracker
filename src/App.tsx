@@ -23,7 +23,7 @@ const Header = styled.h1`
   padding: 2rem 0 0 1rem;
 `;
 
-const StartButton = styled(Button)`
+export const StartButton = styled(Button)`
   width: 200px;
   border-radius: 7.5px;
   padding: 20px 30px;

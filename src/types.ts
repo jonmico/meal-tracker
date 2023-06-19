@@ -6,3 +6,10 @@ export type User = {
   protein: number;
   calories: number;
 };
+
+export type Meal = {
+  fat: number;
+  carbs: number;
+  protein: number;
+  calories: number;
+};

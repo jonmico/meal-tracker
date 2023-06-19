@@ -7,6 +7,8 @@ const MainWrapper = styled.div`
   width: 75%;
   background-color: #393053;
   margin: auto;
+  padding-bottom: 2rem;
+  min-width: 600px;
 `;
 const Header = styled.h1`
   text-align: center;

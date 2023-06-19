@@ -1,5 +1,14 @@
 import { Macros, User } from '../types';
 import MacroNumber from './styled-components/MacroNumber';
+import { styled } from 'styled-components';
+
+const MacroNumberRemain = styled(MacroNumber)<MacroNumberRemainProps>`
+  color: ${(props) => (props.$remainMacro > 0 ? '#00DFA2' : '#FF0060')};
+`;
+
+interface MacroNumberRemainProps {
+  $remainMacro: number;
+}
 
 interface MacroRemainingProps {
   macros: Macros;
@@ -16,10 +25,18 @@ export default function MacroRemaining({ macros, user }: MacroRemainingProps) {
   return (
     <>
       <h4>Remaining</h4>
-      <MacroNumber>{remainFat}</MacroNumber>
-      <MacroNumber>{remainCarbs}</MacroNumber>
-      <MacroNumber>{remainPro}</MacroNumber>
-      <MacroNumber>{remainCals}</MacroNumber>
+      <MacroNumberRemain $remainMacro={remainFat}>
+        {remainFat}
+      </MacroNumberRemain>
+      <MacroNumberRemain $remainMacro={remainCarbs}>
+        {remainCarbs}
+      </MacroNumberRemain>
+      <MacroNumberRemain $remainMacro={remainPro}>
+        {remainPro}
+      </MacroNumberRemain>
+      <MacroNumberRemain $remainMacro={remainCals}>
+        {remainCals}
+      </MacroNumberRemain>
     </>
   );
 }

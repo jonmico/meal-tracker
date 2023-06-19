@@ -11,9 +11,10 @@ import UserScreen from './components/UserScreen';
 const MainWrapper = styled.div`
   width: 75%;
   background-color: #393053;
-  margin: auto;
+  margin: 2rem auto;
   padding-bottom: 2rem;
   min-width: 950px;
+  border-radius: 10px;
 `;
 const Header = styled.h1`
   text-align: center;
